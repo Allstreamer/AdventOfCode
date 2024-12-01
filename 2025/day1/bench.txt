@@ -1,0 +1,13 @@
+
+# V0.1
+```console
+Timer precision: 14 ns
+day1      fastest       │ slowest       │ median        │ mean          │ samples │ iters
+├─ part1  53.79 µs      │ 78.24 µs      │ 55.42 µs      │ 57.13 µs      │ 100     │ 100
+╰─ part2  220.1 µs      │ 354 µs        │ 220.9 µs      │ 225.3 µs      │ 100     │ 100
+
+Timer precision: 13 ns
+day1      fastest       │ slowest       │ median        │ mean          │ samples │ iters
+├─ part1  51.91 µs      │ 107.3 µs      │ 53.13 µs      │ 59.36 µs      │ 100     │ 100
+╰─ part2  210.1 µs      │ 311.5 µs      │ 220.6 µs      │ 224.1 µs      │ 100     │ 100
+```
