@@ -1,4 +1,13 @@
 
 # V0.1
 ```console
+Timer precision: 14 ns
+day2      fastest       │ slowest       │ median        │ mean          │ samples │ iters
+├─ part1  134.4 µs      │ 247.9 µs      │ 135.5 µs      │ 142.5 µs      │ 100     │ 100
+╰─ part2  158.9 µs      │ 291.7 µs      │ 161.1 µs      │ 169.3 µs      │ 100     │ 100
+
+Timer precision: 14 ns
+day2      fastest       │ slowest       │ median        │ mean          │ samples │ iters
+├─ part1  134.7 µs      │ 230.2 µs      │ 135.7 µs      │ 141.4 µs      │ 100     │ 100
+╰─ part2  158.7 µs      │ 316 µs        │ 160.7 µs      │ 166.6 µs      │ 100     │ 100
 ```
