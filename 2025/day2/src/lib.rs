@@ -49,20 +49,22 @@ pub fn solve_task_two(file: &str) -> usize {
         .count()
 }
 
-fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
+pub fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
     let valid_ordering = report[0].cmp(&report[1]);
 
     for i in 0..report.len() - 1 {
-        if Some(i) == skip {
-            continue;
-        }
         let first = report[i];
         let second = report[i + 1];
 
         if first == second {
             if skip.is_none() {
+                let mut first_removed = report.to_vec();
+                first_removed.remove(i);
+                let mut second_removed = report.to_vec();
+                second_removed.remove(i+1);
+
                 let safe_with_remove =
-                    is_safe_level_2(report, Some(i)) || is_safe_level_2(report, Some(i + 1));
+                    is_safe_level_2(&first_removed, Some(i)) || is_safe_level_2(&second_removed, Some(i + 1));
                 return safe_with_remove;
             } else {
                 return false;
@@ -72,8 +74,13 @@ fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
         let diff = first.abs_diff(second);
         if diff < 1 || diff > 3 {
             if skip.is_none() {
+                let mut first_removed = report.to_vec();
+                first_removed.remove(i);
+                let mut second_removed = report.to_vec();
+                second_removed.remove(i+1);
+
                 let safe_with_remove =
-                    is_safe_level_2(report, Some(i)) || is_safe_level_2(report, Some(i + 1));
+                    is_safe_level_2(&first_removed, Some(i)) || is_safe_level_2(&second_removed, Some(i + 1));
                 return safe_with_remove;
             } else {
                 return false;
@@ -81,8 +88,13 @@ fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
         }
         if first.cmp(&second) != valid_ordering {
             if skip.is_none() {
+                let mut first_removed = report.to_vec();
+                first_removed.remove(i);
+                let mut second_removed = report.to_vec();
+                second_removed.remove(i+1);
+
                 let safe_with_remove =
-                    is_safe_level_2(report, Some(i)) || is_safe_level_2(report, Some(i + 1));
+                    is_safe_level_2(&first_removed, Some(i)) || is_safe_level_2(&second_removed, Some(i + 1));
                 return safe_with_remove;
             } else {
                 return false;
