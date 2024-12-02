@@ -24,7 +24,7 @@ fn is_safe_level(report: &[usize]) -> bool {
         }
 
         let diff = first.abs_diff(second);
-        if diff < 1 || diff > 3 {
+        if !(1..=3).contains(&diff) {
             return false;
         }
         if first.cmp(&second) != valid_ordering {
@@ -72,7 +72,7 @@ pub fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
         }
 
         let diff = first.abs_diff(second);
-        if diff < 1 || diff > 3 {
+        if !(1..=3).contains(&diff) {
             if skip.is_none() {
                 let mut first_removed = report.to_vec();
                 first_removed.remove(i);
