@@ -61,10 +61,10 @@ pub fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
                 let mut first_removed = report.to_vec();
                 first_removed.remove(i);
                 let mut second_removed = report.to_vec();
-                second_removed.remove(i+1);
+                second_removed.remove(i + 1);
 
-                let safe_with_remove =
-                    is_safe_level_2(&first_removed, Some(i)) || is_safe_level_2(&second_removed, Some(i + 1));
+                let safe_with_remove = is_safe_level_2(&first_removed, Some(i))
+                    || is_safe_level_2(&second_removed, Some(i + 1));
                 return safe_with_remove;
             } else {
                 return false;
@@ -77,10 +77,10 @@ pub fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
                 let mut first_removed = report.to_vec();
                 first_removed.remove(i);
                 let mut second_removed = report.to_vec();
-                second_removed.remove(i+1);
+                second_removed.remove(i + 1);
 
-                let safe_with_remove =
-                    is_safe_level_2(&first_removed, Some(i)) || is_safe_level_2(&second_removed, Some(i + 1));
+                let safe_with_remove = is_safe_level_2(&first_removed, Some(i))
+                    || is_safe_level_2(&second_removed, Some(i + 1));
                 return safe_with_remove;
             } else {
                 return false;
@@ -91,10 +91,10 @@ pub fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
                 let mut first_removed = report.to_vec();
                 first_removed.remove(i);
                 let mut second_removed = report.to_vec();
-                second_removed.remove(i+1);
+                second_removed.remove(i + 1);
 
-                let safe_with_remove =
-                    is_safe_level_2(&first_removed, Some(i)) || is_safe_level_2(&second_removed, Some(i + 1));
+                let safe_with_remove = is_safe_level_2(&first_removed, Some(i))
+                    || is_safe_level_2(&second_removed, Some(i + 1));
                 return safe_with_remove;
             } else {
                 return false;
