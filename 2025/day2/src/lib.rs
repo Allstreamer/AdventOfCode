@@ -57,51 +57,32 @@ pub fn is_safe_level_2(report: &[usize], skip: Option<usize>) -> bool {
         let second = report[i + 1];
 
         if first == second {
-            if skip.is_none() {
-                let mut first_removed = report.to_vec();
-                first_removed.remove(i);
-                let mut second_removed = report.to_vec();
-                second_removed.remove(i + 1);
-
-                let safe_with_remove = is_safe_level_2(&first_removed, Some(i))
-                    || is_safe_level_2(&second_removed, Some(i + 1));
-                return safe_with_remove;
-            } else {
-                return false;
-            }
+            return on_error(i, report, skip);
         }
 
         let diff = first.abs_diff(second);
         if !(1..=3).contains(&diff) {
-            if skip.is_none() {
-                let mut first_removed = report.to_vec();
-                first_removed.remove(i);
-                let mut second_removed = report.to_vec();
-                second_removed.remove(i + 1);
-
-                let safe_with_remove = is_safe_level_2(&first_removed, Some(i))
-                    || is_safe_level_2(&second_removed, Some(i + 1));
-                return safe_with_remove;
-            } else {
-                return false;
-            }
+            return on_error(i, report, skip);
         }
         if first.cmp(&second) != valid_ordering {
-            if skip.is_none() {
-                let mut first_removed = report.to_vec();
-                first_removed.remove(i);
-                let mut second_removed = report.to_vec();
-                second_removed.remove(i + 1);
-
-                let safe_with_remove = is_safe_level_2(&first_removed, Some(i))
-                    || is_safe_level_2(&second_removed, Some(i + 1));
-                return safe_with_remove;
-            } else {
-                return false;
-            }
+            return on_error(i, report, skip);
         }
     }
     true
+}
+
+/// Recursively Check each possible removal of an entry
+pub fn on_error(i: usize, report: &[usize], skip: Option<usize>) -> bool {
+    if skip.is_none() {
+        let mut first_removed = report.to_vec();
+        first_removed.remove(i);
+        let mut second_removed = report.to_vec();
+        second_removed.remove(i + 1);
+
+        is_safe_level_2(&first_removed, Some(i)) || is_safe_level_2(&second_removed, Some(i + 1))
+    } else {
+        false
+    }
 }
 
 #[cfg(test)]
