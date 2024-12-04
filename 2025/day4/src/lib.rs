@@ -1,20 +1,18 @@
 use std::ops::Not;
 
 pub fn solve_task_one(file: &str) -> usize {
-    let map = file.lines().map(|line| line.chars().collect::<Vec<char>>()).collect::<Vec<Vec<char>>>();
+    let map = file
+        .lines()
+        .map(|line| line.chars().collect::<Vec<char>>())
+        .collect::<Vec<Vec<char>>>();
     // let mut map_clone = map.clone();
     // map_clone.iter_mut().for_each(|e| e.iter_mut().for_each(|b| *b = '.'));
     let mut count = 0;
 
     for y in 0..map.len() as isize {
         for x in 0..map[0].len() as isize {
-            let idx = [
-                    (y, x),
-                    (y, x+1),
-                    (y, x+2),
-                    (y, x+3),
-                ];
-            if check_for_xmas(&map,&idx) {
+            let idx = [(y, x), (y, x + 1), (y, x + 2), (y, x + 3)];
+            if check_for_xmas(&map, &idx) {
                 count += 1;
                 // for pos in idx {
                 //     map_clone[pos.0 as usize][pos.1 as usize] = map[pos.0 as usize][pos.1 as usize];
@@ -22,13 +20,8 @@ pub fn solve_task_one(file: &str) -> usize {
                 // println!("x {}", count);
             }
 
-            let idx = [
-                    (y, x),
-                    (y+1, x),
-                    (y+2, x),
-                    (y+3, x),
-                ];
-            if check_for_xmas(&map,&idx) {
+            let idx = [(y, x), (y + 1, x), (y + 2, x), (y + 3, x)];
+            if check_for_xmas(&map, &idx) {
                 count += 1;
                 // for pos in idx {
                 //     map_clone[pos.0 as usize][pos.1 as usize] = map[pos.0 as usize][pos.1 as usize];
@@ -36,13 +29,8 @@ pub fn solve_task_one(file: &str) -> usize {
                 // println!("y {}", count);
             }
 
-            let idx = [
-                    (y, x),
-                    (y+1, x+1),
-                    (y+2, x+2),
-                    (y+3, x+3),
-                ];
-            if check_for_xmas(&map,&idx) {
+            let idx = [(y, x), (y + 1, x + 1), (y + 2, x + 2), (y + 3, x + 3)];
+            if check_for_xmas(&map, &idx) {
                 count += 1;
                 // for pos in idx {
                 //     map_clone[pos.0 as usize][pos.1 as usize] = map[pos.0 as usize][pos.1 as usize];
@@ -50,13 +38,8 @@ pub fn solve_task_one(file: &str) -> usize {
                 // println!("xy {}", count);
             }
 
-            let idx = [
-                    (y, x),
-                    (y-1, x+1),
-                    (y-2, x+2),
-                    (y-3, x+3),
-                ];
-            if check_for_xmas(&map,&idx) {
+            let idx = [(y, x), (y - 1, x + 1), (y - 2, x + 2), (y - 3, x + 3)];
+            if check_for_xmas(&map, &idx) {
                 count += 1;
                 // for pos in idx {
                 //     map_clone[pos.0 as usize][pos.1 as usize] = map[pos.0 as usize][pos.1 as usize];
@@ -91,26 +74,29 @@ pub fn check_for_xmas(map: &[Vec<char>], idx: &[Idx; 4]) -> bool {
 
     // Check XMAS
     if first_char == 'X' {
-        map[idx[1].0 as usize][idx[1].1 as usize] == 'M' &&
-            map[idx[2].0 as usize][idx[2].1 as usize] == 'A' &&
-            map[idx[3].0 as usize][idx[3].1 as usize] == 'S'
+        map[idx[1].0 as usize][idx[1].1 as usize] == 'M'
+            && map[idx[2].0 as usize][idx[2].1 as usize] == 'A'
+            && map[idx[3].0 as usize][idx[3].1 as usize] == 'S'
     } else {
-        map[idx[1].0 as usize][idx[1].1 as usize] == 'A' &&
-            map[idx[2].0 as usize][idx[2].1 as usize] == 'M' &&
-            map[idx[3].0 as usize][idx[3].1 as usize] == 'X' 
+        map[idx[1].0 as usize][idx[1].1 as usize] == 'A'
+            && map[idx[2].0 as usize][idx[2].1 as usize] == 'M'
+            && map[idx[3].0 as usize][idx[3].1 as usize] == 'X'
     }
 }
 
 pub fn solve_task_two(file: &str) -> usize {
-    let map = file.lines().map(|line| line.chars().collect::<Vec<char>>()).collect::<Vec<Vec<char>>>();
+    let map = file
+        .lines()
+        .map(|line| line.chars().collect::<Vec<char>>())
+        .collect::<Vec<Vec<char>>>();
 
     // let mut map_clone = map.clone();
     // map_clone.iter_mut().for_each(|e| e.iter_mut().for_each(|b| *b = '.'));
-    
+
     let mut count = 0;
 
-    for y in 1..map.len()-1 {
-        for x in 1..map[0].len()-1 {
+    for y in 1..map.len() - 1 {
+        for x in 1..map[0].len() - 1 {
             if map[y][x] != 'A' {
                 continue;
             }
@@ -125,17 +111,17 @@ pub fn solve_task_two(file: &str) -> usize {
 }
 
 fn check_for_mas_x(map: &[Vec<char>], pos: (usize, usize)) -> bool {
-    (map[pos.0-1][pos.1-1] == 'M' && map[pos.0-1][pos.1+1] == 'S' &&
-    map[pos.0+1][pos.1-1] == 'M' && map[pos.0+1][pos.1+1] == 'S') ||
+    (map[pos.0 - 1][pos.1 - 1] == 'M' && map[pos.0 - 1][pos.1 + 1] == 'S' && 
+     map[pos.0 + 1][pos.1 - 1] == 'M' && map[pos.0 + 1][pos.1 + 1] == 'S') || 
+     
+    (map[pos.0 - 1][pos.1 - 1] == 'M' && map[pos.0 - 1][pos.1 + 1] == 'M' && 
+     map[pos.0 + 1][pos.1 - 1] == 'S' && map[pos.0 + 1][pos.1 + 1] == 'S') || 
 
-    (map[pos.0-1][pos.1-1] == 'M' && map[pos.0-1][pos.1+1] == 'M' &&
-    map[pos.0+1][pos.1-1] == 'S' && map[pos.0+1][pos.1+1] == 'S') ||
+    (map[pos.0 - 1][pos.1 - 1] == 'S' && map[pos.0 - 1][pos.1 + 1] == 'S' && 
+     map[pos.0 + 1][pos.1 - 1] == 'M' && map[pos.0 + 1][pos.1 + 1] == 'M') || 
 
-    (map[pos.0-1][pos.1-1] == 'S' && map[pos.0-1][pos.1+1] == 'S' &&
-    map[pos.0+1][pos.1-1] == 'M' && map[pos.0+1][pos.1+1] == 'M') ||
-
-    (map[pos.0-1][pos.1-1] == 'S' && map[pos.0-1][pos.1+1] == 'M' &&
-    map[pos.0+1][pos.1-1] == 'S' && map[pos.0+1][pos.1+1] == 'M')
+    (map[pos.0 - 1][pos.1 - 1] == 'S' && map[pos.0 - 1][pos.1 + 1] == 'M' && 
+     map[pos.0 + 1][pos.1 - 1] == 'S' && map[pos.0 + 1][pos.1 + 1] == 'M')
 }
 
 #[allow(dead_code)]
@@ -175,7 +161,6 @@ mod tests {
         assert!(check_for_xmas(&map, &[(0, 0), (0, 1), (0, 2), (0, 3),]));
         assert!(check_for_xmas(&map, &[(0, 0), (1, 0), (2, 0), (3, 0),]));
         assert!(check_for_xmas(&map, &[(0, 0), (1, 1), (2, 2), (3, 3),]));
-
 
         // Check for Left, Top, Left-Up
         let map = vec![
