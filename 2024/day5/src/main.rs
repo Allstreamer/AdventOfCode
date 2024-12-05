@@ -1,4 +1,4 @@
-use day1::{solve_task_one, solve_task_two};
+use day5::{solve_task_one, solve_task_two};
 
 fn main() {
     println!(

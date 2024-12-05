@@ -1,5 +1,5 @@
 [package]
-name = "day1"
+name = "day5"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,5 +9,5 @@ edition = "2021"
 divan = "0.1.16"
 
 [[bench]]
-name = "day1"
+name = "day5"
 harness = false
